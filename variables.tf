@@ -7,7 +7,7 @@ variable "aws_secret_key" {
 }
 
 variable "aws_region" {
-  type = string
+  type    = string
   default = "eu-central-1"
 }
 
@@ -32,3 +32,9 @@ variable "dbpassword" {
 variable "email" {
   type = string
 }
+
+variable "domain" {
+  type    = string
+  default = "fivehy.com"
+}
+

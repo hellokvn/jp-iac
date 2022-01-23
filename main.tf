@@ -16,11 +16,16 @@ module "budget" {
   email  = var.email
 }
 
-module "database" {
-  source                 = "./common/database"
+module "rds" {
+  source                 = "./common/rds"
   dbname                 = var.dbname
   dbuser                 = var.dbuser
   dbpassword             = var.dbpassword
   db_subnet_group_name   = module.networking.db_subnet_group_name[0]
   vpc_security_group_ids = module.networking.db_security_group
+}
+
+module "route53" {
+  source = "./common/route53"
+  domain = var.domain
 }
