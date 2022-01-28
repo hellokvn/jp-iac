@@ -11,6 +11,10 @@ module "networking" {
   db_subnet_group  = true
 }
 
+module "iam" {
+  source = "./common/iam"
+}
+
 module "budget" {
   source = "./common/budget"
   email  = var.email
@@ -30,11 +34,29 @@ module "route53" {
   domain = var.domain
 }
 
-
 module "prod_static_website" {
   source     = "./prod/static-website"
   s3_domain = var.s3_domain
   aws_access_key = var.aws_access_key
   aws_secret_key = var.aws_secret_key
   aws_route53_main_zone_id = module.route53.aws_route53_main_zone_id
+}
+
+module "prod_ec2" {
+  source               = "./prod/ec2"
+  public_sg            = module.networking.public_sg
+  public_subnets       = module.networking.public_subnets
+  instance_count       = 1
+  instance_type        = "t2.micro"
+  vol_size             = 10
+  key_name             = "key-kvnvo"
+  public_key_path      = "${path.root}/.ssh/key.pub"
+  private_key_path     = "${path.root}/.ssh/key"
+  iam_instance_profile = module.iam.code_deploy_role_instance_profile_name
+}
+
+module "codedeploy" {
+  source               = "./common/codedeploy"
+  code_deploy_role_arn = module.iam.code_deploy_role_arn
+  ec2_prod_tag_name     = module.prod_ec2.ec2_tag_name
 }
