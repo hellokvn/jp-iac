@@ -38,3 +38,8 @@ variable "domain" {
   default = "fivehy.com"
 }
 
+variable "s3_domain" {
+  type    = string
+  default = "jp.fivehy.com"
+}
+

@@ -29,3 +29,12 @@ module "route53" {
   source = "./common/route53"
   domain = var.domain
 }
+
+
+module "prod_static_website" {
+  source     = "./prod/static-website"
+  s3_domain = var.s3_domain
+  aws_access_key = var.aws_access_key
+  aws_secret_key = var.aws_secret_key
+  aws_route53_main_zone_id = module.route53.aws_route53_main_zone_id
+}
