@@ -43,3 +43,8 @@ variable "s3_domain" {
   default = "jp.fivehy.com"
 }
 
+variable "api_domain" {
+  type    = string
+  default = "api.fivehy.com"
+}
+

@@ -34,6 +34,12 @@ module "route53" {
   domain = var.domain
 }
 
+module "loadbalancer" {
+  source = "./common/loadbalancer"
+  api_domain = var.api_domain
+  aws_route53_main_zone_id = module.route53.aws_route53_main_zone_id
+}
+
 module "prod_static_website" {
   source     = "./prod/static-website"
   s3_domain = var.s3_domain
