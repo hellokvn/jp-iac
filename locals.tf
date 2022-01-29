@@ -27,14 +27,8 @@ locals {
           cidr_blocks = [var.access_ip]
         }
         customTcp = {
-          from        = 3000
-          to          = 3010
-          protocol    = "tcp"
-          cidr_blocks = [var.access_ip]
-        }
-        customTcp = {
-          from        = 8000
-          to          = 8010
+          from        = 9701
+          to          = 9702
           protocol    = "tcp"
           cidr_blocks = [var.access_ip]
         }

@@ -16,5 +16,5 @@ sudo chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent start
 sudo service codedeploy-agent status
-sudo npm i -g pm2
 sudo apt update
+sudo waypoint install --platform=docker -accept-tos

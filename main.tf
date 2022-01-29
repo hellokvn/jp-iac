@@ -47,7 +47,7 @@ module "prod_ec2" {
   public_sg            = module.networking.public_sg
   public_subnets       = module.networking.public_subnets
   instance_count       = 1
-  instance_type        = "t2.micro"
+  instance_type        = "t2.small"
   vol_size             = 10
   key_name             = "key-kvnvo"
   public_key_path      = "${path.root}/.ssh/key.pub"
