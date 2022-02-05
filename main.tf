@@ -29,6 +29,11 @@ module "rds" {
   vpc_security_group_ids = module.networking.db_security_group
 }
 
+module "cdn" {
+  source = "./common/cdn"
+  cdn_domain = var.cdn_domain
+}
+
 module "route53" {
   source = "./common/route53"
   domain = var.domain
